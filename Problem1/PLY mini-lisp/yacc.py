@@ -12,25 +12,29 @@ name = {}
 def let(l):
     let_dict = {}
     kv_list = l[0]
-    for i in range(0,len(kv_list),2):
-        let_dict[kv_list[i]] = kv_list[i+1]
 
-    f_list_to_be_evaluated = l[1]
-    f = f_list_to_be_evaluated[0]
-    list_to_be_evaluated = f_list_to_be_evaluated[1]
-    print list_to_be_evaluated
+    if len(l) > 1:
+        for i in range(0,len(kv_list),2):
+            let_dict[kv_list[i]] = kv_list[i+1]
+            
+        f_list_tuple = l[1]
+        f = f_list_tuple[0]
+        list = f_list_tuple[1]
+        print list
 
-    for i in range(0,len(list_to_be_evaluated)):
-        if list_to_be_evaluated[i] in let_dict:
-            list_to_be_evaluated[i] = let_dict[list_to_be_evaluated[i]]
+        for i in range(0,len(list)):
+            if list[i] in let_dict:
+                list[i] = let_dict[list[i]]
 
-    print 'List to be evaluated:'
-    print list_to_be_evaluated
+        print 'List to be evaluated:'
+        print list
 
-    try:
-        return f(list_to_be_evaluated)
-    except TypeError:
-        return [f] + [list_to_be_evaluated]
+        try:
+            return f(list)
+        except TypeError:
+            return [f] + [list]
+    else:
+        return kv_list
 
 
 
