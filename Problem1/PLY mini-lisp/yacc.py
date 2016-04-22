@@ -8,10 +8,15 @@ DEBUG = True
 # Namespace & built-in functions
 
 name = {}
-let_dictionary = {}
 
 def let(l):
-    let_dictionary[l[0]] = l[1]
+    let_dictionary = {}
+    key_value_list = l[0]
+    for i in range(0,len(key_value_list),2):
+        key_value_list[i] = key_value_list[i+1]
+    return False
+
+
 
 name['let'] = let
 
@@ -63,8 +68,6 @@ def cond(l):
 name['cond'] = cond
 
 def add(l):
-    print '********** In Add *************'
-    print 'sum = ' + str(sum(l))
     return sum(l)
 
 name['+'] = add
@@ -92,7 +95,7 @@ def call(f, l):
     try:
         return f(eval_lists(l))  
     except TypeError:
-        return f
+        return [f] + eval_lists(l)
 
 def eval_lists(l):
     r = []
@@ -102,8 +105,6 @@ def eval_lists(l):
                 r.append(lisp_eval(i[0], i[1:]))
             else:
                 r.append(i)
-        elif i in let_dictionary:
-            r.append(let_dictionary[i])
         else:
             r.append(i)
     return r
@@ -185,13 +186,12 @@ def p_item_empty(p):
     'item : empty'
     p[0] = p[1]
 
+
+
 def p_call(p):
     'call : LPAREN SIMB items RPAREN'
     if DEBUG: print "Calling", p[2], "with", p[3]
     p[0] = lisp_eval(p[2], p[3])
-    if DEBUG:
-        print 'CHECKING LISP EVAL'
-        print p[0]
 
 def p_atom_simbol(p):
     'atom : SIMB'
