@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caf719b5-aa6e-42d2-88a9-3df7c96d2907" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Problem1/PLY mini-lisp/yacc.py" afterPath="$PROJECT_DIR$/Problem1/PLY mini-lisp/yacc.py" />
     </list>
     <ignored path="PLProject6.iws" />
@@ -24,14 +23,14 @@
     <favorites_list name="PLProject6" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60859376">
+    <splitter split-orientation="horizontal" split-proportion="0.57890624">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="lex.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/lex.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33606556">
-                  <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.6557377">
+                  <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -54,8 +53,8 @@
           <file leaf-file-name="yacc.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/yacc.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.44262296">
-                  <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+                <state vertical-scroll-proportion="0.14754099">
+                  <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -853,6 +852,9 @@
     </option>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="caf719b5-aa6e-42d2-88a9-3df7c96d2907" name="Default" comment="" />
@@ -860,12 +862,12 @@
       <option name="number" value="Default" />
       <updated>1461249144483</updated>
       <workItem from="1461249146145" duration="4109000" />
-      <workItem from="1461283209633" duration="17048000" />
+      <workItem from="1461283209633" duration="19082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21157000" />
+    <option name="totallyTimeSpent" value="23191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="734" extended-state="6" />
@@ -895,6 +897,14 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -938,16 +948,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/lex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33606556">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6557377">
+          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/yacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44262296">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.14754099">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
         </state>
       </provider>

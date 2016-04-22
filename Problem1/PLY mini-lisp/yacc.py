@@ -9,34 +9,30 @@ DEBUG = True
 
 name = {}
 
-def let(l):
-    let_dict = {}
-    kv_list = l[0]
 
+def let(l):
+    # Is a list such that if index i is even it's a key (variable name) ,
+    # if index i is odd it's a value
+    # example: [var1, val1, var2, val2]
+    kv_list = l[0]
     if len(l) > 1:
+        let_dict = {}
         for i in range(0,len(kv_list),2):
             let_dict[kv_list[i]] = kv_list[i+1]
-            
+
         f_list_tuple = l[1]
         f = f_list_tuple[0]
         list = f_list_tuple[1]
-        print list
 
         for i in range(0,len(list)):
             if list[i] in let_dict:
                 list[i] = let_dict[list[i]]
-
-        print 'List to be evaluated:'
-        print list
-
         try:
             return f(list)
         except TypeError:
             return [f] + [list]
     else:
         return kv_list
-
-
 
 name['let'] = let
 
@@ -251,5 +247,7 @@ def p_error(p):
 # Use this if you want to build the parser using SLR instead of LALR
 # yacc.yacc(method="SLR")
 yacc.yacc()
+
+
 
 
