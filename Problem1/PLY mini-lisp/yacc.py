@@ -10,26 +10,29 @@ DEBUG = True
 name = {}
 
 def let(l):
-    let_dictionary = {}
-    key_value_list = l[0]
-    for i in range(0,len(key_value_list),2):
-        let_dictionary[key_value_list[i]] = key_value_list[i+1]
+    let_dict = {}
+    kv_list = l[0]
+    for i in range(0,len(kv_list),2):
+        let_dict[kv_list[i]] = kv_list[i+1]
 
     f_list_to_be_evaluated = l[1]
     f = f_list_to_be_evaluated[0]
     list_to_be_evaluated = f_list_to_be_evaluated[1]
-    print 'Here'
     print list_to_be_evaluated
 
     for i in range(0,len(list_to_be_evaluated)):
-        if list_to_be_evaluated[i] in let_dictionary:
-            list_to_be_evaluated[i] = let_dictionary[list_to_be_evaluated[i]]
-
+        if list_to_be_evaluated[i] in let_dict:
+            list_to_be_evaluated[i] = let_dict[list_to_be_evaluated[i]]
 
     print 'List to be evaluated:'
     print list_to_be_evaluated
 
-    return f(list_to_be_evaluated)
+    try:
+        return f(list_to_be_evaluated)
+    except TypeError:
+        return [f] + [list_to_be_evaluated]
+
+
 
 name['let'] = let
 
@@ -198,8 +201,6 @@ def p_item_call(p):
 def p_item_empty(p):
     'item : empty'
     p[0] = p[1]
-
-
 
 def p_call(p):
     'call : LPAREN SIMB items RPAREN'
