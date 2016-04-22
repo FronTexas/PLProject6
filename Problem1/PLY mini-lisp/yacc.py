@@ -13,10 +13,23 @@ def let(l):
     let_dictionary = {}
     key_value_list = l[0]
     for i in range(0,len(key_value_list),2):
-        key_value_list[i] = key_value_list[i+1]
-    return False
+        let_dictionary[key_value_list[i]] = key_value_list[i+1]
+
+    f_list_to_be_evaluated = l[1]
+    f = f_list_to_be_evaluated[0]
+    list_to_be_evaluated = f_list_to_be_evaluated[1]
+    print 'Here'
+    print list_to_be_evaluated
+
+    for i in range(0,len(list_to_be_evaluated)):
+        if list_to_be_evaluated[i] in let_dictionary:
+            list_to_be_evaluated[i] = let_dictionary[list_to_be_evaluated[i]]
 
 
+    print 'List to be evaluated:'
+    print list_to_be_evaluated
+
+    return f(list_to_be_evaluated)
 
 name['let'] = let
 
@@ -95,7 +108,7 @@ def call(f, l):
     try:
         return f(eval_lists(l))  
     except TypeError:
-        return [f] + eval_lists(l)
+        return [f] + [eval_lists(l)]
 
 def eval_lists(l):
     r = []

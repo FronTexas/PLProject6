@@ -29,7 +29,7 @@
           <file leaf-file-name="lex.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/lex.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.63114756">
+                <state vertical-scroll-proportion="0.63011456">
                   <caret line="37" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
                   <folding />
                 </state>
@@ -53,8 +53,8 @@
           <file leaf-file-name="yacc.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/yacc.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39344263">
-                  <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+                <state vertical-scroll-proportion="0.5646481">
+                  <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
@@ -90,7 +90,7 @@
     <option name="x" value="640" />
     <option name="y" value="23" />
     <option name="width" value="640" />
-    <option name="height" value="734" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -853,15 +853,15 @@
       <option name="number" value="Default" />
       <updated>1461249144483</updated>
       <workItem from="1461249146145" duration="4109000" />
-      <workItem from="1461283209633" duration="8707000" />
+      <workItem from="1461283209633" duration="9828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12816000" />
+    <option name="totallyTimeSpent" value="13937000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="640" y="23" width="640" height="734" extended-state="0" />
+    <frame x="640" y="23" width="640" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -931,7 +931,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/lex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63114756">
+        <state vertical-scroll-proportion="0.63011456">
           <caret line="37" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
@@ -939,8 +939,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Problem1/PLY mini-lisp/yacc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39344263">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.5646481">
+          <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
           <folding />
         </state>
       </provider>
