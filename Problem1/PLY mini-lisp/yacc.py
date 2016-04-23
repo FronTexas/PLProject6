@@ -9,6 +9,13 @@ DEBUG = True
 
 name = {}
 
+def _if(l):
+    if l[0] == True:
+        return l[1]
+    else:
+        return l[2]
+
+name['if'] = _if
 
 def let(l):
     # Is a list such that if index i is even it's a key (variable name) ,
