@@ -39,7 +39,7 @@ def let(l):
         except TypeError:
             return [f] + [list]
     else:
-        return kv_list
+        return kv_list[1]
 
 name['let'] = let
 
@@ -91,15 +91,102 @@ def cond(l):
 name['cond'] = cond
 
 def add(l):
-    return sum(l)
+    try:
+        intList = []
+        for num in l:
+            intList.append(int(num))
+    except ValueError:
+        print("Cannot divide with type string.")
+    else:
+        return sum(intList)
 
 name['+'] = add
 
 def minus(l):
-    '''Unary minus'''
-    return -l[0]
+    try:
+        intList = []
+        for num in l:
+            intList.append(int(num))
+    except ValueError:
+        print("Cannot divide with type string.")
+    else:
+        if len(intList) == 0:
+            return 0
+        elif len(intList) == 1:
+            '''Unary minus'''
+            return -intList[0]
+        else:
+            return intList[0] - sum(intList[1:])
 
 name['-'] = minus
+
+def multiply(l):
+    try:
+        intList = []
+        for num in l:
+            intList.append(int(num))
+    except ValueError:
+        print("Cannot divide with type string.")
+    else:
+        if len(intList) == 0:
+            return 1
+        elif len(l) == 1:
+            return l[0]
+        else:
+            result = 1
+            for num in l:
+                result *= num
+            return result
+
+name['*'] = multiply
+
+def divide(l):
+    # To convert negative values which are strings in the list.
+    try:
+        intList = []
+        for num in l:
+            intList.append(int(num))
+    except ValueError:
+        print("Cannot divide with type string.")
+    else:
+        try:
+            if len(intList) == 0:
+                raise Exception("Need at least 1 argument for dividing.")
+            # Returns reciprocal of argument if only one present
+            elif len(intList) == 1:
+                if "-" in str(intList[0]):
+                    return "-1/" + str(-intList[0])
+                else:
+                    return "1/" + str(intList[0])
+            else:
+                if 0 in intList[2:]:
+                    raise Exception("Cannot divide by 0.")
+                else:
+                    result = intList[0]
+                    if ("-" in str(intList[0])):
+                        negDividend = True
+                    else:
+                        negDividend = False
+                    for i in range(1, len(intList)):
+                        if ("-" in str(intList[i])):
+                            negDivisor = True
+                        else:
+                            negDivisor = False
+                        # Don't have to correct for flooring of int div for python in these cases:
+                        # 1) Dividend divides divisor perfectly
+                        # 2) Dividend and divisor are both + or - --> + quotient
+                        if (intList[0] % intList[i] == 0) or (negDividend and negDivisor) or (not negDividend and not negDivisor):
+                            result //= intList[i]
+                        else:
+                            result //= intList[i]
+                            # Corrects for python flooring negative int div, where lisp rounds towards 0
+                            result += 1
+
+                    return result
+        except Exception as e:
+            print(e)
+
+name['/'] = divide
 
 def _print(l):
     print lisp_str(l[0])
