@@ -47,7 +47,7 @@ def standard_env():
         '+':       lambda *x: sum(x),
         '-':       lambda *x: x[0] - sum(x[1:]) if len(x)>1 else -x[0],
         '*':       lambda *l: reduce(lambda x,y: x*y, l),
-        '/':       lambda *l: reduce(lambda x,y: x//y if x/y > 0 else x//y + 1, l),
+        '/':       lambda *l: reduce(lambda x,y: x//y if x/y > 0 or x%y == 0 else x//y + 1, l) if 0 not in l[1:] else "Cannot divide by 0",
         '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
         '#t':      True,
         '#f':      False,
