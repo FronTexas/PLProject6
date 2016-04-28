@@ -45,7 +45,7 @@ def standard_env():
     env.update(vars(math)) # sin, cos, sqrt, pi, ...
     env.update({
         '+':       lambda *x: sum(x),
-        '-':       lambda *x: x[0] - sum(x[1:]),
+        '-':       lambda *x: x[0] - sum(x[1:]) if len(x)>1 else -x[0],
         '*':       lambda *l: reduce(lambda x,y: x*y, l),
         '/':       lambda *l: reduce(lambda x,y: x//y if x/y > 0 else x//y + 1, l),
         '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
