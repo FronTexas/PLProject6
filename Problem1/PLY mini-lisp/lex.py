@@ -26,7 +26,7 @@ t_FALSE = r'\#f'
 
 
 def t_NUM(t):
-    r'\d+'
+    r'-{0,1}\d+'
     try:
         t.value = int(t.value)    
     except ValueError:
