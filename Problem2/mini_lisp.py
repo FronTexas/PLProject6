@@ -87,16 +87,17 @@ def eval(x, env=global_env):
         if functionPresent:
             exps = x[assignCount + 1:]
             print("EXPRESSIONS:", exps)
+            expReturns = []
             for exp in exps:
                 for key in letDict.keys():
                     try:
-                        # Replace variable with value stored in dict
+                        # Replace variable in expression with value stored in dict
                         exp[exp.index(key)] = letDict[key]
                     except ValueError:
                         # If key is not in the expression, skip
                         continue
-                    else:
-                        return eval(exp, env)
+                expReturns.append(eval(exp,env))
+            return expReturns
         else:
             return letDict
     else:                          # (proc arg...)
