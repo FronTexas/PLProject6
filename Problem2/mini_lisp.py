@@ -61,16 +61,19 @@ class Procedure(object):
 
 def eval(x, env=global_env):
     "Evaluate an expression in an environment."
-    if isinstance(x, Symbol):      # variable reference
+    if isinstance(x, Symbol) and (x in env):      # variable reference
         print("LOOK UP SYMBOL:", x, "RETURN FUNCTION",env.find(x)[x])
         return env.find(x)[x]
     elif not isinstance(x, List):  # constant literal
+        print("2", x)
         return x
     elif x[0] == 'if':             # (if test conseq alt)
+        print("3", x)
         (_, test, conseq, alt) = x
         exp = (conseq if eval(test, env) else alt)
         return eval(exp, env)
     elif x[0] == 'let':
+        print("4", x)
         letDict = {}
         assignCount = 0
         functionPresent = False
@@ -85,7 +88,7 @@ def eval(x, env=global_env):
                 functionPresent = True
                 break
         if functionPresent:
-            exps = x[assignCount + 1:]
+            exps = x[assignCount + 1 :]
             print("EXPRESSIONS:", exps)
             expReturns = []
             for exp in exps:
@@ -101,6 +104,7 @@ def eval(x, env=global_env):
         else:
             return letDict
     else:                          # (proc arg...)
+        print("else", x)
         proc = eval(x[0], env)
         args = [eval(exp, env) for exp in x[1:]]
         print("PROC:", proc, "ARGS:", args)
