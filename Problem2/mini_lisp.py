@@ -100,9 +100,14 @@ def eval(x, env=global_env):
                         # If key is not in the expression, skip
                         continue
                 expReturns.append(eval(exp,env))
-            return expReturns
+            return expReturns[-1]
         else:
             return letDict
+    elif x[0] == 'cons':
+        (func, item, list) = x
+        proc = eval(func, env)
+        args = [item, list]
+        return proc(*args)
     else:                          # (proc arg...)
         print("else", x)
         proc = eval(x[0], env)
