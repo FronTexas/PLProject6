@@ -273,6 +273,7 @@ def p_call(p):
     #p[0] = (lisp_eval(p[2], p[3]) if call == "default" else [p[2]] + p[3])
     p[0] = [p[2]] + p[3]
 
+
 def p_atom_simbol(p):
     'atom : SIMB'
     p[0] = p[1]
@@ -308,6 +309,12 @@ def p_nil(p):
 # Error rule for syntax errors
 def p_error(p):
     print "Syntax error!! ",p
+
+# def p_comparison(p):
+#     ''' item: item GT item |
+#              item LT item
+#     '''
+#     p[0] = True
 
 # Build the parser
 # Use this if you want to build the parser using SLR instead of LALR
