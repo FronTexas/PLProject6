@@ -223,7 +223,7 @@ def p_exp_qlist(p):
     'exp : quoted_list'
     p[0] = p[1]
 
-def p_exp_call(p, call = "default"):
+def p_exp_call(p):
     'exp : call'
     p[0] = p[1]
 
@@ -294,13 +294,18 @@ def p_atom_empty(p):
     'atom :'
     pass
 
-def p_true(p):
-    'bool : TRUE'
-    p[0] = True
+def p_bool(p):
+   '''bool : TRUE
+           | FALSE'''
+   p[0] = p[1]
 
-def p_false(p):
-    'bool : FALSE'
-    p[0] = False
+# def p_true(p):
+#     'bool : TRUE'
+#     p[0] = True
+#
+# def p_false(p):
+#     'bool : FALSE'
+#     p[0] = False
 
 def p_nil(p):
     'atom : NIL'
@@ -309,12 +314,6 @@ def p_nil(p):
 # Error rule for syntax errors
 def p_error(p):
     print "Syntax error!! ",p
-
-# def p_comparison(p):
-#     ''' item: item GT item |
-#              item LT item
-#     '''
-#     p[0] = True
 
 # Build the parser
 # Use this if you want to build the parser using SLR instead of LALR
