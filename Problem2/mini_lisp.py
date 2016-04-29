@@ -23,17 +23,33 @@ def standard_env():
         '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
         '#t':      True,
         '#f':      False,
+        'abs':     abs,
+        'append':  op.add,
+        'apply':   apply,
+        'begin':   lambda *x: x[-1],
+
         'car':     lambda x: x[0],
         'cdr':     lambda x: x[1:],
         'cons':    lambda x,y: [x] + y,
+        'concat':  lambda l: [map(lambda x: str(x).replace("'",""), l) if x is not isinstance(l, list) else x for x in l],
         'eq?':     op.is_,
         'equal?':  op.eq,
         'length':  len,
-
         'list':    lambda *x: list(x),
-
-
+        'list?':   lambda x: isinstance(x,list),
+        'map':     map,
+        'max':     max,
+        'min':     min,
         'not':     op.not_,
+        'reduceConcat':  lambda *l: reduce(lambda x,y: x + y, l),
+        'null?':   lambda x: x == [],
+        'number?': lambda x: isinstance(x, Number),
+        'procedure?': callable,
+        'round':   round,
+        'symbol?': lambda x: isinstance(x, Symbol),
+        "'"   :    lambda *x: list(x),
+
+
     })
     return env
 
@@ -103,11 +119,22 @@ def eval(x, env=global_env):
             return expReturns[-1]
         else:
             return letDict
-    elif x[0] == 'cons':
-        (func, item, list) = x
-        proc = eval(func, env)
-        args = [item, list]
-        return proc(*args)
+    elif x[0] == 'concat':
+        proc = eval(x[0])
+        listOfLists = proc(x[1:])
+        proc = eval("reduceConcat")
+        print("PROC:", proc, "ARGS:", listOfLists)
+        return proc(*listOfLists)
+
+    elif x[0] == 'define':         # (define var exp)
+        (_, var, exp) = x
+        env[var] = eval(exp, env)
+    elif x[0] == 'set!':           # (set! var exp)
+        (_, var, exp) = x
+        env.find(var)[var] = eval(exp, env)
+    elif x[0] == 'lambda':         # (lambda (var...) body)
+        (_, parms, body) = x
+        return Procedure(parms, body, env)
     else:                          # (proc arg...)
         print("else", x)
         proc = eval(x[0], env)
