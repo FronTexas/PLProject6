@@ -51,7 +51,6 @@ name['cons'] = cons
 def concat(l):
     return l[0] + l[1]
 
-
 name['concat'] = concat
 
 def listar(l):
@@ -108,8 +107,9 @@ def minus(l):
 name['-'] = minus
 
 def multiply(l):
+
     if containsChar(l):
-        raise TypeError
+        raise TypeError('There exist undefined variable')
     if len(l) == 0:
         return 1
     elif len(l) == 1:
@@ -123,6 +123,8 @@ def multiply(l):
 name['*'] = multiply
 
 def divide(l):
+    if containsChar(l):
+        raise TypeError('There exist undefined variable')
     try:
         if len(l) == 0:
             raise Exception("Need at least 1 argument for dividing.")
@@ -181,14 +183,15 @@ def lisp_eval(simb, items):
 def containsChar(l):
     for i in l:
         if type(i) == type(""):
-            return True
-    return False
+            return (True,i)
+    return (False,None)
 
 
 def call(f, l):
     try:
         return f(eval_lists(l))
-    except TypeError:
+    except TypeError as e:
+        print ('Exception: ', e)
         return [f] + [eval_lists(l)]
 
 def eval_lists(l):
