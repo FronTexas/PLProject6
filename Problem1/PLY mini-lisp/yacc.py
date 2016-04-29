@@ -28,6 +28,8 @@ def let(l):
             let_dict[kv_list[i]] = kv_list[i+1]
 
         f_list_tuple = l[-1]
+        if not type(f_list_tuple) == type([]):
+            return l[-1]
         f = f_list_tuple[0]
         list = f_list_tuple[1]
 
@@ -107,9 +109,9 @@ def minus(l):
 name['-'] = minus
 
 def multiply(l):
-
-    if containsChar(l):
-        raise TypeError('There exist undefined variable')
+    containsUndefinedVar,theVar = checkUndefinedVar(l)
+    if containsUndefinedVar:
+        raise TypeError('There exist undefined variable ' + str(theVar))
     if len(l) == 0:
         return 1
     elif len(l) == 1:
@@ -123,8 +125,9 @@ def multiply(l):
 name['*'] = multiply
 
 def divide(l):
-    if containsChar(l):
-        raise TypeError('There exist undefined variable')
+    containsUndefinedVar,theVar = checkUndefinedVar(l)
+    if containsUndefinedVar:
+        raise TypeError('There exist undefined variable ' + str(theVar))
     try:
         if len(l) == 0:
             raise Exception("Need at least 1 argument for dividing.")
@@ -180,7 +183,7 @@ def lisp_eval(simb, items):
        return [simb] + items
 
 
-def containsChar(l):
+def checkUndefinedVar(l):
     for i in l:
         if type(i) == type(""):
             return (True,i)
