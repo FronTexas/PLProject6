@@ -21,11 +21,10 @@ def standard_env():
         '*':       lambda *l: reduce(lambda x,y: x*y, l),
         '/':       lambda *l: reduce(lambda x,y: x//y if x/y > 0 or x%y == 0 else x//y + 1, l) if 0 not in l[1:] else "Cannot divide by 0",
         '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq,
-        '#t':      True,
-        '#f':      False,
         'abs':     abs,
         'append':  op.add,
         'apply':   apply,
+        'and'  :   lambda *l: reduce(lambda x, y: x and y, l),
         'begin':   lambda *x: x[-1],
         'car':     lambda x: x[0],
         'cdr':     lambda x: x[1:],
@@ -40,6 +39,7 @@ def standard_env():
         'max':     max,
         'min':     min,
         'not':     op.not_,
+        'or':      lambda *l: reduce(lambda x,y: x or y, l),
         'reduceConcat':  lambda *l: reduce(lambda x,y: x + y, l),
         'null?':   lambda x: x == [],
         'number?': lambda x: isinstance(x, Number),
@@ -75,18 +75,20 @@ class Procedure(object):
 def eval(x, env=global_env):
     "Evaluate an expression in an environment."
     if isinstance(x, Symbol) and (x in env):      # variable reference
-        print("LOOK UP SYMBOL:", x, "RETURN FUNCTION",env.find(x)[x])
+        #print("LOOK UP SYMBOL:", x, "RETURN FUNCTION",env.find(x)[x])
         return env.find(x)[x]
     elif not isinstance(x, List):  # constant literal
-        print("2", x)
+        if isinstance(x, str):
+            if x.lower() == 'false' or x == '#f':
+                return False
+            elif x.lower() == 'true' or x == '#t':
+                return True
         return x
     elif x[0] == 'if':             # (if test conseq alt)
-        print("3", x)
         (_, test, conseq, alt) = x
-        exp = (conseq if eval(test0, env) else alt)
+        exp = (conseq if eval(test, env) else alt)
         return eval(exp, env)
     elif x[0] == 'let':
-        print("4", x)
         letDict = {}
         assignCount = 0
         functionPresent = False
@@ -102,7 +104,7 @@ def eval(x, env=global_env):
                 break
         if functionPresent:
             exps = x[assignCount + 1 :]
-            print("EXPRESSIONS:", exps)
+            #print("EXPRESSIONS:", exps)
             expReturns = []
             for exp in exps:
                 for key in letDict.keys():
@@ -136,9 +138,12 @@ def eval(x, env=global_env):
     elif x[0] == 'lambda':         # (lambda (var...) body)
         (_, parms, body) = x
         return Procedure(parms, body, env)
+    elif x[0] == 'print':
+        arg = eval(x[1], env)
+        print (arg)
+        return(arg)
     else:                          # (proc arg...)
-        print("else", x)
         proc = eval(x[0], env)
         args = [eval(exp, env) for exp in x[1:]]
-        print("PROC:", proc, "ARGS:", args)
+        #print("PROC:", proc, "ARGS:", args)
         return proc(*args)
