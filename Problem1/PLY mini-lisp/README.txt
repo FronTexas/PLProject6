@@ -9,3 +9,10 @@ All arithmetic functions support integer type fully (including negatives)
 - Division: Allows 1+ arguments
 	- 1 argument: returns reciprocal of the value
 	- Rounds quotients towards 0 after each division
+
+- Let allows multiple operators and will return the last evaluated expression
+	(let (a 3)(+ 1 a)(- 2 a)) --> -1
+
+- If only supports #t/#f or True False but can evaluate expressions as the consequence/alternative
+	(if #t 3 2) --> 3
+	(if #f (let (a 3)(+ 1 a))(let (a 4)(- 2 a))) --> -2
