@@ -27,11 +27,10 @@ def standard_env():
         'append':  op.add,
         'apply':   apply,
         'begin':   lambda *x: x[-1],
-
         'car':     lambda x: x[0],
         'cdr':     lambda x: x[1:],
         'cons':    lambda x,y: [x] + y,
-        'concat':  lambda l: [map(lambda x: str(x).replace("'",""), l) if x is not isinstance(l, list) else x for x in l],
+        'concat':  lambda l: map(lambda x: str(x).replace("'",""), l),
         'eq?':     op.is_,
         'equal?':  op.eq,
         'length':  len,
@@ -48,8 +47,6 @@ def standard_env():
         'round':   round,
         'symbol?': lambda x: isinstance(x, Symbol),
         "'"   :    lambda *x: list(x),
-
-
     })
     return env
 
@@ -86,7 +83,7 @@ def eval(x, env=global_env):
     elif x[0] == 'if':             # (if test conseq alt)
         print("3", x)
         (_, test, conseq, alt) = x
-        exp = (conseq if eval(test, env) else alt)
+        exp = (conseq if eval(test0, env) else alt)
         return eval(exp, env)
     elif x[0] == 'let':
         print("4", x)
@@ -120,12 +117,16 @@ def eval(x, env=global_env):
         else:
             return letDict
     elif x[0] == 'concat':
-        proc = eval(x[0])
-        listOfLists = proc(x[1:])
+        if isinstance(x[1], list):
+            listOfLists = []
+            for x in x[1:]:
+                x.remove("'")
+                listOfLists.append(x)
+        else:
+            proc = eval(x[0])
+            listOfLists = proc(x[1:])
         proc = eval("reduceConcat")
-        print("PROC:", proc, "ARGS:", listOfLists)
         return proc(*listOfLists)
-
     elif x[0] == 'define':         # (define var exp)
         (_, var, exp) = x
         env[var] = eval(exp, env)
