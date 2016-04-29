@@ -20,8 +20,6 @@ t_RPAREN = r'\)'
 t_QUOTE = r'\''
 t_TRUE = r'\#t'
 t_FALSE = r'\#f'
-# t_GT = r'>'
-# t_LT = r'<'
 
 def t_NUM(t):
     r'-{0,1}\d+'
@@ -33,7 +31,7 @@ def t_NUM(t):
     return t
 
 def t_SIMB(t):
-    r'[/a-zA-Z_+=\*\-][/a-zA-Z0-9_+\*\-]*'
+    r'[></a-zA-Z_+=\*\-][></a-zA-Z0-9_+\*\-=]*'
     t.type = reserved.get(t.value,'SIMB')    # Check for reserved words
     return t
 
