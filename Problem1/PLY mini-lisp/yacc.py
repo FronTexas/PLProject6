@@ -258,7 +258,7 @@ def p_item_list(p):
 def p_item_list(p):
     'item : quoted_list'
     p[0] = p[1]
-    ()
+
 def p_item_call(p):
     'item : call'
     p[0] = p[1]
