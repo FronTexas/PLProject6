@@ -229,7 +229,7 @@ def p_exp_call(p, call = "default"):
 
 def p_quoted_list(p):
     'quoted_list : QUOTE list'
-    p[0] = p[2]
+    p[0] = [p[1]] + p[2]
 
 def p_list(p):
     'list : LPAREN items RPAREN'
