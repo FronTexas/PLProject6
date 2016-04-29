@@ -27,7 +27,7 @@ def let(l):
         for i in range(0,len(kv_list),2):
             let_dict[kv_list[i]] = kv_list[i+1]
 
-        f_list_tuple = l[1]
+        f_list_tuple = l[-1]
         f = f_list_tuple[0]
         list = f_list_tuple[1]
 
@@ -39,7 +39,7 @@ def let(l):
         except TypeError:
             return [f] + [list]
     else:
-        return kv_list[1]
+        return kv_list
 
 name['let'] = let
 
@@ -50,6 +50,7 @@ name['cons'] = cons
 
 def concat(l):
     return l[0] + l[1]
+
 
 name['concat'] = concat
 
@@ -107,6 +108,8 @@ def minus(l):
 name['-'] = minus
 
 def multiply(l):
+    if containsChar(l):
+        raise TypeError
     if len(l) == 0:
         return 1
     elif len(l) == 1:
@@ -154,6 +157,8 @@ def divide(l):
                         result += 1
 
                 return result
+    except TypeError as e:
+        raise e
     except Exception as e:
         print(e)
 
@@ -172,9 +177,17 @@ def lisp_eval(simb, items):
     else:
        return [simb] + items
 
+
+def containsChar(l):
+    for i in l:
+        if type(i) == type(""):
+            return True
+    return False
+
+
 def call(f, l):
     try:
-        return f(eval_lists(l))  
+        return f(eval_lists(l))
     except TypeError:
         return [f] + [eval_lists(l)]
 
@@ -288,7 +301,7 @@ def p_atom_word(p):
     'atom : TEXT'
     p[0] = p[1]
 
-def p_atom_empty(p): 
+def p_atom_empty(p):
     'atom :'
     pass
 
