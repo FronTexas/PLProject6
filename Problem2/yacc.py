@@ -3,7 +3,7 @@ import ply.yacc as yacc
 # Get the token map from the lexer.  This is required.
 from lex import tokens
 
-DEBUG = True
+DEBUG = False
 
 # Namespace & built-in functions
 
@@ -27,7 +27,11 @@ def let(l):
         for i in range(0,len(kv_list),2):
             let_dict[kv_list[i]] = kv_list[i+1]
 
-        f_list_tuple = l[1]
+        f_list_tuple = l[-1]
+
+        if not type(f_list_tuple) == type([]):
+            return l[-1]
+
         f = f_list_tuple[0]
         list = f_list_tuple[1]
 

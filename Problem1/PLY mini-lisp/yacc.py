@@ -28,8 +28,10 @@ def let(l):
             let_dict[kv_list[i]] = kv_list[i+1]
 
         f_list_tuple = l[-1]
+
         if not type(f_list_tuple) == type([]):
             return l[-1]
+
         f = f_list_tuple[0]
         list = f_list_tuple[1]
 
@@ -41,7 +43,7 @@ def let(l):
         except TypeError:
             return [f] + [list]
     else:
-        return kv_list
+        return kv_list[1]
 
 name['let'] = let
 
